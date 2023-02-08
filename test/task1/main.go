@@ -19,19 +19,13 @@ func (h *Human) run() {
 }
 
 func main() {
-	// объявление переменной типа Human
-	var artur = Human{
-		firstName: "Артур",
-		lastName:  "Григорьев",
-		age:       23,
+	var action = Action{ // объявление переменной типа Action
+		Human: Human{ // объявление переменной типа Human
+			firstName: "Артур",
+			lastName:  "Григорьев",
+			age:       23,
+		},
 	}
 
-	// объявление переменной типа Action
-	var action = Action{
-		Human: artur,
-	}
-
-	// вызов метода анонимного поля Human
-	action.run()
-
+	action.run() // вызов метода анонимного поля Human
 }

@@ -3,22 +3,19 @@ package main
 import "fmt"
 
 func main() {
-	// инициализация массива с числами и переменной типа int, в которой будет храниться результат
-	var numbers = [5]int{2, 4, 6, 8, 10}
-	var result int
+	var numbers = [5]int{2, 4, 6, 8, 10} // инициализация массива с числами и
+	var result int                       // объявление переменной типа int, в которой будет храниться результат
 
-	// инициализация канала, работающего с типом int
-	var ch = make(chan int, len(numbers))
+	ch := make(chan int, len(numbers)) // инициализация канала, работающего с типом int
 
 	for _, i := range numbers {
 		go func(num int) {
-			// запись результата вычисления в канал
-			ch <- num * num
+			ch <- num * num // запись результата вычисления в канал
 		}(i)
 	}
 
 	for i := 0; i < len(numbers); i++ {
-		result = result + <-ch
+		result = result + <-ch // суммирование результата
 	}
 
 	fmt.Println(result)
