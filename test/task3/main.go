@@ -3,8 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	// инициализация массива с числами
+	// инициализация массива с числами и переменной типа int, в которой будет храниться результат
 	var numbers = [5]int{2, 4, 6, 8, 10}
+	var result int
+
 	// инициализация канала, работающего с типом int
 	var ch = make(chan int, len(numbers))
 
@@ -16,9 +18,8 @@ func main() {
 	}
 
 	for i := 0; i < len(numbers); i++ {
-		// чтение и вывод данных из канала
-		fmt.Println(<-ch)
+		result = result + <-ch
 	}
-	// закрытие канала
-	close(ch)
+
+	fmt.Println(result)
 }
