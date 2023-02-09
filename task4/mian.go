@@ -88,14 +88,13 @@ func main() {
 		go wrk.service()
 	}
 
-	//todo дописать комменты
-	go func() {
-		<-osSignalCh
-		close(osSignalCh)
-	}()
+	go sendNumsToChan(osSignalCh, numsCh)
 
-	sendNumsToChan(osSignalCh, numsCh)
-	fmt.Println("Break main loop")
+	// здесь основной поток остановится и будет ждать сигнала от ОС
+	<-osSignalCh
+	close(osSignalCh)
+
+	fmt.Println("program was finish")
 
 	wg.Wait() // ожидание завершения работы всех воркеров
 }
