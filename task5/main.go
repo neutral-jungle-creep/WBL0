@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func sendRandomSymbolToChan(c context.Context, ch chan<- int) {
+func sendDigitToChan(c context.Context, ch chan<- int) {
 	defer close(ch) // при завершении горутины канал гарантированно закроется
 
 	for {
@@ -31,7 +31,7 @@ func main() {
 	ch := make(chan int) // инициализация канала
 	ctx, cancel := context.WithTimeout(context.Background(), workTime*time.Second)
 
-	go sendRandomSymbolToChan(ctx, ch)
+	go sendDigitToChan(ctx, ch)
 
 	for d := range ch {
 		fmt.Printf("program prints --- %v\n", string(rune(d))) // печать на консоль случайного символа

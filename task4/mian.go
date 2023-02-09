@@ -53,7 +53,7 @@ func (w *worker) service() {
 	}
 }
 
-func sendNumsToChan(osSignalCh <-chan os.Signal, numsCh chan<- int) {
+func sendRandomNumsToChan(osSignalCh <-chan os.Signal, numsCh chan<- int) {
 	for {
 		select {
 		case <-osSignalCh: // если пришел сигнал в этот канал, то программа выйдет из бесконечного цикла
@@ -88,7 +88,7 @@ func main() {
 		go wrk.service()
 	}
 
-	go sendNumsToChan(osSignalCh, numsCh)
+	go sendRandomNumsToChan(osSignalCh, numsCh)
 
 	// здесь основной поток остановится и будет ждать сигнала от ОС
 	<-osSignalCh
