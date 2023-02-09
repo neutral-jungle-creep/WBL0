@@ -48,7 +48,7 @@ func (w *worker) service() {
 			fmt.Printf("shutting down [%d] worker!\n", w.id)
 			return
 		case num := <-w.numsQueueCh:
-			fmt.Printf("[%d] worker prints --- digit %d\n", w.id, num) // чтение числа из канала и вывод на консоль
+			fmt.Printf("[%d] worker prints --- digit %s\n", w.id, string(rune(num))) // вывод на консоль символа из канала
 		}
 	}
 }
@@ -59,7 +59,7 @@ func sendNumsToChan(osSignalCh <-chan os.Signal, numsCh chan<- int) {
 		case <-osSignalCh: // если пришел сигнал в этот канал, то программа выйдет из бесконечного цикла
 			return
 		default:
-			numsCh <- rand.Intn(500) // отправка данных в канал, который читают горутины
+			numsCh <- 1 + rand.Intn(3) // отправка данных в канал, который читают горутины
 		}
 	}
 }
