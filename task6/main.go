@@ -16,7 +16,7 @@ func contextDoneRoutineStop() {
 
 	go func(c context.Context, ch chan int) {
 		defer close(ch) // при завершении горутины канал гарантированно закроется
-
+		// если не закрыть канал в горутине, то будет all goroutines are asleep - deadlock!
 		for {
 			select {
 			case <-c.Done():
@@ -29,7 +29,7 @@ func contextDoneRoutineStop() {
 		}
 	}(ctx, ch)
 
-	for d := range ch { // если не закрыть канал в горутине, то будет all goroutines are asleep - deadlock!
+	for d := range ch {
 		fmt.Printf("func contextDoneRoutineStop prints --- %s\n", string(rune(d))) // печать на консоль случайного символа
 	}
 
