@@ -19,8 +19,8 @@ func (h *Human) run() {
 }
 
 func main() {
-	var action = Action{ // объявление переменной типа Action
-		Human: Human{ // объявление переменной типа Human
+	var action = Action{
+		Human: Human{
 			firstName: "Артур",
 			lastName:  "Григорьев",
 			age:       23,

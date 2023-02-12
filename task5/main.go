@@ -17,13 +17,13 @@ func sendDigitToChan(c context.Context, ch chan<- int) {
 			log.Printf("time is up: %s", c.Err().Error())
 			return
 		default:
-			ch <- 1 + rand.Intn(3) // отправка рандомного числа в канал от 1 до 3
+			ch <- 1 + rand.Intn(3)
 		}
 	}
 }
 
 func main() {
-	var workTime time.Duration                     // объявление переменной для времени работы программы
+	var workTime time.Duration
 	if _, err := fmt.Scan(&workTime); err != nil { // получение длительности работы программы из консоли от пользователя
 		log.Fatal(err)
 	}
@@ -34,7 +34,7 @@ func main() {
 	go sendDigitToChan(ctx, ch)
 
 	for d := range ch {
-		fmt.Printf("program prints --- %v\n", string(rune(d))) // печать на консоль случайного символа
+		fmt.Printf("program prints --- %v\n", string(rune(d)))
 	}
 	cancel()
 }

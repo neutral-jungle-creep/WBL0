@@ -23,22 +23,22 @@ func contextDoneRoutineStop() {
 				log.Println("finish func contextDoneRoutineStop")
 				return
 			default:
-				ch <- 1 + rand.Intn(3) // отправка рандомного числа в канал от 1 до 3
+				ch <- 1 + rand.Intn(3)
 				time.Sleep(1 * time.Second)
 			}
 		}
 	}(ctx, ch)
 
 	for d := range ch {
-		fmt.Printf("func contextDoneRoutineStop prints --- %s\n", string(rune(d))) // печать на консоль случайного символа
+		fmt.Printf("func contextDoneRoutineStop prints --- %s\n", string(rune(d)))
 	}
 
-	cancel()
+	cancel() // сработает при истечении времени контекста
 }
 
 func sendDigitToChan(ch chan<- int) {
 	for i := 0; i < 5; i++ {
-		ch <- 1 + rand.Intn(3) // отправка рандомного числа в канал от 1 до 3
+		ch <- 1 + rand.Intn(3)
 		time.Sleep(1 * time.Second)
 	}
 }

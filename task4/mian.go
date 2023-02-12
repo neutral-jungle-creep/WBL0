@@ -17,8 +17,7 @@ import (
 //Программа должна завершаться по нажатию Ctrl+C. Выбрать и обосновать
 //способ завершения работы всех воркеров.
 
-// создание пользовательского типа worker
-// воркеру каналы нужны только для чтения, поэтому преобразовала канал в однонаправленный
+// создала структуру воркера чтобы не передавать в функцию service 4+ аргументов
 type worker struct {
 	id          int
 	numsQueueCh chan int
@@ -48,7 +47,7 @@ func (w *worker) service() {
 			fmt.Printf("shutting down [%d] worker!\n", w.id)
 			return
 		case num := <-w.numsQueueCh:
-			fmt.Printf("[%d] worker prints --- digit %s\n", w.id, string(rune(num))) // вывод на консоль символа из канала
+			fmt.Printf("[%d] worker prints --- digit %s\n", w.id, string(rune(num)))
 		}
 	}
 }
@@ -65,13 +64,14 @@ func sendRandomNumsToChan(osSignalCh <-chan os.Signal, numsCh chan<- int) {
 }
 
 func main() {
-	var workers int                               // объявление переменной для кол-ва воркеров
+	var workers int
 	if _, err := fmt.Scan(&workers); err != nil { // получение числа воркеров из консоли от пользователя
 		log.Fatal(err)
 	}
 
-	osSignalCh := make(chan os.Signal, 1)                      // инициализация канала для сигнала ОС
-	signal.Notify(osSignalCh, syscall.SIGINT, syscall.SIGTERM) // отправка сигнала ОС в канал
+	osSignalCh := make(chan os.Signal, 1) // инициализация канала для сигнала ОС
+	// передача функции канала, из которого она будет ждать сигнал для завершения работы
+	signal.Notify(osSignalCh, syscall.SIGINT, syscall.SIGTERM)
 
 	// инициализация канала для работы с типом int (генерируемых программой данных)
 	numsCh := make(chan int)
