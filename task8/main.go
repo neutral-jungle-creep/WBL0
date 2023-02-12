@@ -29,7 +29,7 @@ func main() {
 
 	log.Print("enter number and position: ")
 
-	if _, err := fmt.Scan(&number, &position); err != nil { // получение нужных данных из консоли от пользователя
+	if _, err := fmt.Scan(&number, &position); err != nil { // получение числа и позиции из консоли от пользователя
 		log.Fatal(err.Error())
 	}
 

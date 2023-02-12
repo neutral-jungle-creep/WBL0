@@ -30,7 +30,7 @@ func main() {
 	cache := NewCache(map[int]string{})
 
 	log.Println("writing starts")
-	for i := 1; i < 4; i++ { // создание трех горутин
+	for i := 1; i < 4; i++ {
 		go func(id int) {
 			for j := 0; j < 70; j++ {
 				// запись по рандомному ключу (поэтому некоторые значения могут перезаписаться)

@@ -19,14 +19,14 @@ func main() {
 
 	go func() {
 		for n := range chReadNum { // получение данных по одному из канала
-			log.Printf("chReadNum gets num --- %d\n", n) // логиговарие полученного
-			newNum := n * 2                              // умножение
-			chPrintNum <- newNum                         // отправка в канал для печати на консоль
+			log.Printf("chReadNum gets num --- %d\n", n)
+			newNum := n * 2
+			chPrintNum <- newNum
 		}
 	}()
 	go func() {
 		for n := range chPrintNum {
-			fmt.Printf("new number from chPrintNum = [%d]\n", n) // печать на консоль результата умножения
+			fmt.Printf("new number from chPrintNum = [%d]\n", n)
 		}
 	}()
 

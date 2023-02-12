@@ -22,7 +22,7 @@ func makeNumsMap(set1, set2 [10]int) map[int]int {
 }
 
 func main() {
-	var set1, set2 = [10]int{}, [10]int{} // инициализация двух массивов размером 10 элементов
+	var set1, set2 = [10]int{}, [10]int{}
 
 	for i := 0; i < 10; i++ {
 		set1[i] = rand.Intn(5)
@@ -32,7 +32,7 @@ func main() {
 	log.Printf("set2 = %v", set2)
 
 	for i, item := range makeNumsMap(set1, set2) {
-		if item == 1 { // вывод на консоль результата пересечения двух множеств
+		if item == 1 { // пересечения множеств будет значение == 1
 			fmt.Println(i)
 		}
 	}

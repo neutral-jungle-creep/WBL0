@@ -15,11 +15,11 @@ func addTValuesToGroups(tValues []float32) map[int][]float32 {
 }
 
 func main() {
-	var tValues = []float32{-25.4, -27.0, 13.0, 19.0, 15.5, 24.5, -21.0, 32.5} // инициализация массива со значениями температур
+	var tValues = []float32{-25.4, -27.0, 13.0, 19.0, 15.5, 24.5, -21.0, 32.5}
 
-	groups := addTValuesToGroups(tValues) // группировка значений в мапу
+	groups := addTValuesToGroups(tValues)
 
 	for i, item := range groups {
-		fmt.Printf("%d:%v ", i, item) // вывод на консоль результата
+		fmt.Printf("%d:%v ", i, item)
 	}
 }
