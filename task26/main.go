@@ -9,7 +9,7 @@ import (
 func checkForUniqueness(line string) bool {
 	var symbolsSet = map[rune]struct{}{}
 
-	for _, symbol := range []rune(strings.ToLower(line)) {
+	for _, symbol := range []rune(strings.ToLower(line)) { // все символы в один регистр, чтобы программа не считала их разными рунами
 		if _, exists := symbolsSet[symbol]; exists {
 			return false
 		} else {

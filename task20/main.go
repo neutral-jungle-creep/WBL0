@@ -7,7 +7,7 @@ import (
 )
 
 func reverseLine(words []string) string {
-	var result []string // объявление переменной для результата
+	var result []string
 
 	for i := len(words) - 1; i >= 0; i-- { // начиная с конца слайса
 		result = append(result, words[i]) // добавление к результату элементов слайса
