@@ -23,7 +23,9 @@ import (
 //}
 
 func makeRandSymbolsString() string {
-	return string(makeRandRuneCollection(1 << 10)[:100])
+	return string(makeRandRuneCollection(1 << 10)[:100]) // обработка ошибки не нужна, тк 1 << 10 = 1024,
+	// то есть строка всегда будет содержать 1024 символа
+	// TODO - только я не знаю, как это отразить в названии функции и надо ли?
 }
 
 func makeRandRuneCollection(length int) []rune {
