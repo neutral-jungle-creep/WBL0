@@ -5,15 +5,6 @@ import (
 	"sort"
 )
 
-func main() {
-	searchField := []int{2, 5, 8, 12, 3, 23, 100, 11, 72, 1}
-	sort.Ints(searchField) // с не отсортированным списком бинарный поиск не будет эффективен
-
-	num, counter := binarySearch(searchField, 10)
-	log.Printf("number = [%d]\n", num)
-	log.Printf("counter = [%d]", counter)
-}
-
 func binarySearch(sortedNumsCollection []int, item int) (int, int) {
 	var (
 		low     = 0
@@ -40,4 +31,13 @@ func binarySearch(sortedNumsCollection []int, item int) (int, int) {
 		}
 	}
 	return item, counter
+}
+
+func main() {
+	searchField := []int{2, 5, 8, 12, 3, 23, 100, 11, 72, 1}
+	sort.Ints(searchField) // с не отсортированным списком бинарный поиск не будет эффективен
+
+	num, counter := binarySearch(searchField, 10)
+	log.Printf("number = [%d]\n", num)
+	log.Printf("counter = [%d]", counter)
 }
